@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A little surprise 💗</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,#fff8f3,#fce8ef);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#5b3c48;display:flex;align-items:center;justify-content:center;padding:18px}
+main{width:min(100%,1000px);min-height:80vh;display:flex;align-items:center;justify-content:center}
+.page{display:none;width:100%;animation:fade .35s ease}.page.active{display:block}
+img{display:block;max-width:100%;height:auto;object-fit:contain;border-radius:14px}
+.welcome-wrap{max-width:700px;margin:auto;text-align:center}.welcome-wrap img{width:100%;max-height:72vh}
+.btn{border:0;border-radius:999px;background:#e989a5;color:#fff;padding:14px 25px;font-size:17px;font-weight:700;box-shadow:0 5px 0 #c96d89;cursor:pointer;margin:14px 8px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #c96d89}
+.options-layout{display:grid;grid-template-columns:minmax(220px,.85fr) minmax(280px,1.15fr);gap:24px;align-items:center;max-width:900px;margin:auto}
+.option-buttons{display:flex;flex-direction:column;gap:12px}
+.option-buttons .btn{margin:0;width:100%;background:#fff;color:#7a4a5b;border:2px solid #f0b8c9;box-shadow:0 4px 0 #e8c3ce}
+.option-buttons .btn:hover{background:#fff0f5}
+.options-img{width:100%;max-height:70vh}
+.photo-page{max-width:780px;margin:auto;text-align:center}.photo-page img{width:100%;max-height:75vh;margin:0 auto}
+audio{display:block;width:min(100%,420px);margin:15px auto}.note{font-size:14px;opacity:.75}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:650px){.options-layout{grid-template-columns:1fr;gap:12px}.options-img{max-height:48vh;order:-1}.option-buttons{max-width:430px;margin:auto;width:100%}main{min-height:75vh}}
+</style>
+</head>
+<body>
+<main>
+<section class="page active" id="welcome"><div class="welcome-wrap">
+<img src="assets/welcome.jpg" alt="Jerry: on karne ke liye press button dabaye">
+<button class="btn" onclick="showPage('options')">Press button 💗</button>
+</div></section>
+
+<section class="page" id="options"><div class="options-layout">
+<div class="option-buttons">
+<button class="btn" onclick="showPage('like1')">If you like me 💗</button>
+<button class="btn" onclick="showPage('hate1')">If you hate me 🙄</button>
+<button class="btn" onclick="showPage('angry1')">If you're angry 😤</button>
+</div>
+<img class="options-img" src="assets/options.jpg" alt="Cute character">
+</div></section>
+
+<section class="page" id="like1"><div class="photo-page">
+<img src="assets/like_thanks.jpg" alt="Ji shukriya">
+<button class="btn" onclick="showPage('like2')">Next ➜</button>
+</div></section>
+<section class="page" id="like2"><div class="photo-page">
+<img src="assets/like_photo.jpg" alt="Photo collage">
+<audio id="song" controls preload="metadata"><source src="assets/my_song.mp3" type="audio/mpeg">Audio playback isn't supported.</audio>
+<p class="note">Song play karne ke liye ▶ dabaye 💗</p>
+<button class="btn" onclick="showPage('options')">Back</button>
+</div></section>
+
+<section class="page" id="hate1"><div class="photo-page">
+<img src="assets/hate_first.jpg" alt="Naah aise nahi bolte">
+<button class="btn" onclick="showPage('hate2')">Next ➜</button>
+</div></section>
+<section class="page" id="hate2"><div class="photo-page">
+<img src="assets/hate_last.jpg" alt="Vapas jao">
+<button class="btn" onclick="showPage('welcome')">Back ↩</button>
+</div></section>
+
+<section class="page" id="angry1"><div class="photo-page">
+<img src="assets/angry_first.jpg" alt="Sorry na yrr">
+<button class="btn" onclick="showPage('angry2')">Next ➜</button>
+</div></section>
+<section class="page" id="angry2"><div class="photo-page">
+<img src="assets/angry_last.jpg" alt="Sorry photo collage">
+<button class="btn" onclick="showPage('welcome')">Back ↩</button>
+</div></section>
+</main>
+<script>
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ if(id!=='like2'){const audio=document.getElementById('song');if(audio){audio.pause();audio.currentTime=0;}}
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body></html>
